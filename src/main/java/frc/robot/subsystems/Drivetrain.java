@@ -1,10 +1,18 @@
 package frc.robot.subsystems;
 
-public class Drivetrain {
-    SwerveModule frontRightSwerveModule = new SwerveModule(RobotMap.FrontRightDrive, RobotMap.FrontRightTurn);
-    SwerveModule frontLeftSwerveModule = new SwerveModule(RobotMap.FrontLeftDrive, RobotMap.FrontLeftTurn);
-    SwerveModule backRightSwerveModule = new SwerveModule(RobotMap.BackRightDrive, RobotMap.BackRightDrive);
-    SwerveModule backLeftSwerveModule = new SwerveModule(RobotMap.BackLeftDrive, RobotMap.BackLeftTurn);
+import frc.robot.Constants.DrivetrainConstants;
+import frc.robot.RobotMap;
+
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class Drivetrain extends SubsystemBase {
+    SwerveModule frontRightSwerveModule = new SwerveModule(RobotMap.FrontRightDrive, RobotMap.FrontRightTurn, RobotMap.FrontRightEncoder, DrivetrainConstants.FrontRightOffset);
+    SwerveModule frontLeftSwerveModule = new SwerveModule(RobotMap.FrontLeftDrive, RobotMap.FrontLeftTurn, RobotMap.FrontLeftEncoder, DrivetrainConstants.FrontLeftOffset);
+    SwerveModule backRightSwerveModule = new SwerveModule(RobotMap.BackRightDrive, RobotMap.BackRightDrive, RobotMap.BackRightEncoder, DrivetrainConstants.BackRightOffset);
+    SwerveModule backLeftSwerveModule = new SwerveModule(RobotMap.BackLeftDrive, RobotMap.BackLeftTurn, RobotMap.BackLeftEncoder, DrivetrainConstants.BackLeftOffset);
 
     private SwerveDriveKinematics swerveDriveKinematics = new SwerveDriveKinematics(
         DrivetrainConstants.FrontLeftLocation,

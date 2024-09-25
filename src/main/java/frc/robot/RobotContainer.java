@@ -1,11 +1,23 @@
 package frc.robot;
 
+import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.Drivetrain;
+
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
+import com.ctre.phoenix6.hardware.Pigeon2;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public class RobotContainer {
-  private final Drivetrain drivetrain = new Drivetrain(gyro);
-  private final CommandJoystick driverController = new CommandJoystick(OperatorContstants.DriverControllerPort)
+  Pigeon2 gyro = new Pigeon2(10);
+
+  private final Drivetrain drivetrain = new Drivetrain();
+  private final CommandXboxController driverController = new CommandXboxController(OperatorConstants.DriverControllerPort);
 
   public RobotContainer() {
     configureBindings();
@@ -13,15 +25,16 @@ public class RobotContainer {
 
   private void configureBindings() {
     drivetrain.setDefaultCommand(
-      new Drive (
+      new Drive(
         drivetrain,
         () -> new ChassisSpeeds(
-          -driverController.getAxis(),
-          0,
-          -driverController.getAxis()
-        )
+          -driverController.getLeftX(),
+          -driverController.getLeftY(),
+          -driverController.getRightX()
+        ),
+        () -> Math.toRadians(gyro.getAngle())
       )
-    )
+    );
   }
 
   public Command getAutonomousCommand() {
