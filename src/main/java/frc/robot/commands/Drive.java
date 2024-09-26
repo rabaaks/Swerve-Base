@@ -4,6 +4,7 @@ import frc.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import java.util.function.Supplier;
@@ -21,7 +22,13 @@ public class Drive extends Command {
     }
 
     public void execute() {
-        ChassisSpeeds newSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(speedsSupplier.get(), Rotation2d.fromRadians(angleSupplier.get()));
+        ChassisSpeeds speeds = speedsSupplier.get();
+        ChassisSpeeds newSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(speeds, Rotation2d.fromRadians(angleSupplier.get()));
         drivetrain.setSpeeds(newSpeeds);
+
+        SmartDashboard.putNumber("Gyro", angleSupplier.get());
+        SmartDashboard.putNumber("X Speed", newSpeeds.vxMetersPerSecond);
+        SmartDashboard.putNumber("Y Speed", newSpeeds.vyMetersPerSecond);
+        SmartDashboard.putNumber("Angluar Speed", newSpeeds.omegaRadiansPerSecond);
     }
 }
