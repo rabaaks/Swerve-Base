@@ -27,6 +27,7 @@ public class SwerveModule {
     public SwerveModule(int driveMotorId, int turnMotorId, int encoderId, double offset) {
         driveMotor = new CANSparkMax(driveMotorId, MotorType.kBrushless);
         driveMotor.setIdleMode(IdleMode.kCoast);
+        driveMotor.setSmartCurrentLimit(60);
         drivePID = driveMotor.getPIDController();
         driveEncoder = driveMotor.getEncoder();
         driveEncoder.setPositionConversionFactor(DrivetrainConstants.DrivePositionConversionFactor);
@@ -34,6 +35,7 @@ public class SwerveModule {
 
         turnMotor = new CANSparkMax(turnMotorId, MotorType.kBrushless);
         turnMotor.setIdleMode(IdleMode.kCoast);
+        driveMotor.setSmartCurrentLimit(60);
         turnPID = turnMotor.getPIDController();
         turnEncoder = turnMotor.getEncoder();
         turnEncoder.setPositionConversionFactor(DrivetrainConstants.TurnPositionConversionFactor);

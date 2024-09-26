@@ -12,6 +12,7 @@ import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 public class RobotContainer {
   Pigeon2 gyro = new Pigeon2(10);
@@ -35,6 +36,7 @@ public class RobotContainer {
         () -> Math.toRadians(gyro.getAngle())
       )
     );
+    driverController.a().onTrue(new RunCommand(() -> gyro.reset()));
   }
 
   public Command getAutonomousCommand() {

@@ -6,6 +6,7 @@ import frc.robot.RobotMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
@@ -28,5 +29,17 @@ public class Drivetrain extends SubsystemBase {
         frontRightSwerveModule.setState(moduleStates[1]);
         backLeftSwerveModule.setState(moduleStates[2]);
         backRightSwerveModule.setState(moduleStates[3]);
+
+        SmartDashboard.putNumber("Front Left Speed", moduleStates[0].speedMetersPerSecond);
+        SmartDashboard.putNumber("Front Left Angle", moduleStates[0].angle.getDegrees());
+
+        SmartDashboard.putNumber("Front Right Speed", moduleStates[1].speedMetersPerSecond);
+        SmartDashboard.putNumber("Front Right Angle", moduleStates[1].angle.getDegrees());
+
+        SmartDashboard.putNumber("Back Left Speed", moduleStates[1].speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Left Angle", moduleStates[1].angle.getDegrees());
+        
+        SmartDashboard.putNumber("Back Right Speed", moduleStates[1].speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Right Angle", moduleStates[1].angle.getDegrees());
     }
 }

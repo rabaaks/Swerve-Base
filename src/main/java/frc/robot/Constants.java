@@ -18,9 +18,9 @@ public final class Constants {
         public static final double DriveP = 0;
         public static final double DriveI = 0;
         public static final double DriveD = 0;
-        public static final double DriveFF = 0;
+        public static final double DriveFF = 1.0 / ForwardSpeed;
 
-        public static final double TurnP = 0;
+        public static final double TurnP = 0.01;
         public static final double TurnI = 0;
         public static final double TurnD = 0;
         public static final double TurnFF = 0;
