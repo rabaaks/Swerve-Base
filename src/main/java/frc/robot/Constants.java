@@ -10,10 +10,10 @@ public final class Constants {
         public static final double ForwardSpeed = 1.0;
         public static final double AngularSpeed = 0.8 * Math.PI;
 
-        public static final Translation2d FrontLeftLocation = new Translation2d(0.2, 0.2);
-        public static final Translation2d FrontRightLocation = new Translation2d(0.2, -0.2);
-        public static final Translation2d BackLeftLocation = new Translation2d(-0.2, 0.2);
-        public static final Translation2d BackRightLocation = new Translation2d(-0.2, -0.2);
+        public static final Translation2d FrontLeftLocation = new Translation2d(0.1, 0.1);
+        public static final Translation2d FrontRightLocation = new Translation2d(0.1, -0.1);
+        public static final Translation2d BackLeftLocation = new Translation2d(-0.1, 0.1);
+        public static final Translation2d BackRightLocation = new Translation2d(-0.1, -0.1);
 
         public static final double DriveP = 0;
         public static final double DriveI = 0;
