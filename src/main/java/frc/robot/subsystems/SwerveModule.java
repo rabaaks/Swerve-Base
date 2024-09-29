@@ -27,6 +27,7 @@ public class SwerveModule {
         driveMotor = new CANSparkMax(driveMotorId, MotorType.kBrushless);
         driveMotor.setIdleMode(IdleMode.kCoast);
         driveMotor.setSmartCurrentLimit(60);
+        driveMotor.setInverted(false);
         drivePID = driveMotor.getPIDController();
         driveEncoder = driveMotor.getEncoder();
         driveEncoder.setPositionConversionFactor(DrivetrainConstants.DrivePositionConversionFactor);
@@ -34,19 +35,21 @@ public class SwerveModule {
 
         turnMotor = new CANSparkMax(turnMotorId, MotorType.kBrushless);
         turnMotor.setIdleMode(IdleMode.kCoast);
-        driveMotor.setSmartCurrentLimit(60);
+        turnMotor.setSmartCurrentLimit(60);
+        turnMotor.setInverted(false);
         turnPID = turnMotor.getPIDController();
         turnEncoder = turnMotor.getEncoder();
         turnEncoder.setPositionConversionFactor(DrivetrainConstants.TurnPositionConversionFactor);
         turnEncoder.setVelocityConversionFactor(DrivetrainConstants.TurnVelocityConversionFactor);
 
         absEncoder = new AnalogEncoder(encoderId);
-        turnEncoder.setPosition((absEncoder.getAbsolutePosition() - offset) * 2.0 * Math.PI);
+        // Test abs encoder later
+        // turnEncoder.setPosition((absEncoder.getAbsolutePosition() - offset) * 2.0 * Math.PI);
     }
 
     public void setState(SwerveModuleState state) {
         // Test optimization later
-        SwerveModuleState optimizedState = state; //SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
+        SwerveModuleState optimizedState = state; // SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
         drivePID.setReference(optimizedState.speedMetersPerSecond, ControlType.kVelocity);
         turnPID.setReference(optimizedState.angle.getRadians(), ControlType.kPosition);
     }

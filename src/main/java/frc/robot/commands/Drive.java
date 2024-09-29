@@ -23,7 +23,8 @@ public class Drive extends Command {
 
     public void execute() {
         ChassisSpeeds speeds = speedsSupplier.get();
-        ChassisSpeeds newSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(speeds, Rotation2d.fromRadians(angleSupplier.get()));
+        // Test field-oriented later
+        ChassisSpeeds newSpeeds = speeds; // ChassisSpeeds newSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(speeds, Rotation2d.fromRadians(angleSupplier.get()));
         drivetrain.setSpeeds(newSpeeds);
 
         SmartDashboard.putNumber("Gyro", angleSupplier.get());
