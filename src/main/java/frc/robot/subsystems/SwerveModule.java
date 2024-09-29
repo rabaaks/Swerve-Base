@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import frc.robot.Constants.DrivetrainConstants;
@@ -52,5 +53,9 @@ public class SwerveModule {
         SwerveModuleState optimizedState = state; // SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
         drivePID.setReference(optimizedState.speedMetersPerSecond, ControlType.kVelocity);
         turnPID.setReference(optimizedState.angle.getRadians(), ControlType.kPosition);
+    }
+
+    public SwerveModuleState getState() {
+        return new SwerveModuleState(driveEncoder.getVelocity(), Rotation2d.fromRadians(turnEncoder.getPosition()));
     }
 }

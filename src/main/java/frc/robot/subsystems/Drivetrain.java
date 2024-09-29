@@ -32,14 +32,22 @@ public class Drivetrain extends SubsystemBase {
 
         SmartDashboard.putNumber("Front Left Speed", moduleStates[0].speedMetersPerSecond);
         SmartDashboard.putNumber("Front Left Angle", moduleStates[0].angle.getDegrees());
+        SmartDashboard.putNumber("Front Left Actual Speed", frontLeftSwerveModule.getState().speedMetersPerSecond);
+        SmartDashboard.putNumber("Front Left Actual Angle", frontLeftSwerveModule.getState().angle.getDegrees());
 
         SmartDashboard.putNumber("Front Right Speed", moduleStates[1].speedMetersPerSecond);
         SmartDashboard.putNumber("Front Right Angle", moduleStates[1].angle.getDegrees());
+        SmartDashboard.putNumber("Front Right Actual Speed", frontRightSwerveModule.getState().speedMetersPerSecond);
+        SmartDashboard.putNumber("Front Right Actual Angle", frontRightSwerveModule.getState().angle.getDegrees());
 
         SmartDashboard.putNumber("Back Left Speed", moduleStates[2].speedMetersPerSecond);
         SmartDashboard.putNumber("Back Left Angle", moduleStates[2].angle.getDegrees());
+        SmartDashboard.putNumber("Back Left Actual Speed", backLeftSwerveModule.getState().speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Left Actual Angle", backLeftSwerveModule.getState().angle.getDegrees());
         
         SmartDashboard.putNumber("Back Right Speed", moduleStates[3].speedMetersPerSecond);
         SmartDashboard.putNumber("Back Right Angle", moduleStates[3].angle.getDegrees());
+        SmartDashboard.putNumber("Back Right Actual Speed", backRightSwerveModule.getState().speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Right Actual Angle", backRightSwerveModule.getState().angle.getDegrees());
     }
 }
