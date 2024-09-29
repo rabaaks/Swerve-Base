@@ -28,11 +28,16 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(
       new Drive(
         drivetrain,
-        () -> new ChassisSpeeds(
-          -MathUtil.applyDeadband(driverController.getRawAxis(1), 0.1) * DrivetrainConstants.ForwardSpeed,
-          -MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1)  * DrivetrainConstants.ForwardSpeed,
-          MathUtil.applyDeadband(driverController.getRawAxis(2), 0.1) * DrivetrainConstants.AngularSpeed
-        ),
+        () -> {
+          double inputLeftX = MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1);
+          double inputLeftY = MathUtil.applyDeadband(driverController.getRawAxis(1), 0.1);
+          double inputRightX = MathUtil.applyDeadband(driverController.getRawAxis(2), 0.1);
+          return new ChassisSpeeds(
+            -inputLeftY * Math.sqrt(1 - -inputLeftX / 2) * DrivetrainConstants.ForwardSpeed,
+            -inputLeftX * Math.sqrt(1 - -inputLeftY / 2) * DrivetrainConstants.ForwardSpeed,
+            inputRightX * DrivetrainConstants.AngularSpeed
+          );
+        },
         () -> Math.toRadians(gyro.getAngle())
       )
     );
