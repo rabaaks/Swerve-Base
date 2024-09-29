@@ -46,7 +46,8 @@ public class SwerveModule {
     }
 
     public void setState(SwerveModuleState state) {
-        SwerveModuleState optimizedState = SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
+        // Test optimization later
+        SwerveModuleState optimizedState = state; //SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
         drivePID.setReference(optimizedState.speedMetersPerSecond, ControlType.kVelocity);
         turnPID.setReference(optimizedState.angle.getRadians(), ControlType.kPosition);
     }

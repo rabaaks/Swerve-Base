@@ -13,6 +13,6 @@ public final class RobotMap {
 
     public static final int FrontRightEncoder = 1;
     public static final int FrontLeftEncoder = 0;
-    public static final int BackRightEncoder = 2;
-    public static final int BackLeftEncoder = 3;
+    public static final int BackRightEncoder = 3;
+    public static final int BackLeftEncoder = 2;
 }

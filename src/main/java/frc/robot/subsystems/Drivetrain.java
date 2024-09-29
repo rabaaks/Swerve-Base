@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
-    SwerveModule frontRightSwerveModule = new SwerveModule(RobotMap.FrontRightDrive, RobotMap.FrontRightTurn, RobotMap.FrontRightEncoder, DrivetrainConstants.FrontRightOffset);
     SwerveModule frontLeftSwerveModule = new SwerveModule(RobotMap.FrontLeftDrive, RobotMap.FrontLeftTurn, RobotMap.FrontLeftEncoder, DrivetrainConstants.FrontLeftOffset);
-    SwerveModule backRightSwerveModule = new SwerveModule(RobotMap.BackRightDrive, RobotMap.BackRightDrive, RobotMap.BackRightEncoder, DrivetrainConstants.BackRightOffset);
+    SwerveModule frontRightSwerveModule = new SwerveModule(RobotMap.FrontRightDrive, RobotMap.FrontRightTurn, RobotMap.FrontRightEncoder, DrivetrainConstants.FrontRightOffset);
     SwerveModule backLeftSwerveModule = new SwerveModule(RobotMap.BackLeftDrive, RobotMap.BackLeftTurn, RobotMap.BackLeftEncoder, DrivetrainConstants.BackLeftOffset);
+    SwerveModule backRightSwerveModule = new SwerveModule(RobotMap.BackRightDrive, RobotMap.BackRightTurn, RobotMap.BackRightEncoder, DrivetrainConstants.BackRightOffset);
 
     private SwerveDriveKinematics swerveDriveKinematics = new SwerveDriveKinematics(
         DrivetrainConstants.FrontLeftLocation,
@@ -36,10 +36,10 @@ public class Drivetrain extends SubsystemBase {
         SmartDashboard.putNumber("Front Right Speed", moduleStates[1].speedMetersPerSecond);
         SmartDashboard.putNumber("Front Right Angle", moduleStates[1].angle.getDegrees());
 
-        SmartDashboard.putNumber("Back Left Speed", moduleStates[1].speedMetersPerSecond);
-        SmartDashboard.putNumber("Back Left Angle", moduleStates[1].angle.getDegrees());
+        SmartDashboard.putNumber("Back Left Speed", moduleStates[2].speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Left Angle", moduleStates[2].angle.getDegrees());
         
-        SmartDashboard.putNumber("Back Right Speed", moduleStates[1].speedMetersPerSecond);
-        SmartDashboard.putNumber("Back Right Angle", moduleStates[1].angle.getDegrees());
+        SmartDashboard.putNumber("Back Right Speed", moduleStates[3].speedMetersPerSecond);
+        SmartDashboard.putNumber("Back Right Angle", moduleStates[3].angle.getDegrees());
     }
 }

@@ -7,13 +7,13 @@ public final class Constants {
         public static final int DriverControllerPort = 0;
     }
     public static class DrivetrainConstants {
-        public static final double ForwardSpeed = 0.1;
-        public static final double AngularSpeed = 0.1;
+        public static final double ForwardSpeed = 1.0;
+        public static final double AngularSpeed = 0.8 * Math.PI;
 
-        public static final Translation2d FrontRightLocation = new Translation2d(0.2, -0.2);
         public static final Translation2d FrontLeftLocation = new Translation2d(0.2, 0.2);
-        public static final Translation2d BackRightLocation = new Translation2d(-0.2, -0.2);
+        public static final Translation2d FrontRightLocation = new Translation2d(0.2, -0.2);
         public static final Translation2d BackLeftLocation = new Translation2d(-0.2, 0.2);
+        public static final Translation2d BackRightLocation = new Translation2d(-0.2, -0.2);
 
         public static final double DriveP = 0;
         public static final double DriveI = 0;
@@ -25,10 +25,10 @@ public final class Constants {
         public static final double TurnD = 0;
         public static final double TurnFF = 0;
 
-        public static final double FrontRightOffset = 0.524;
         public static final double FrontLeftOffset = 0.283;
-        public static final double BackRightOffset = 0.802;
+        public static final double FrontRightOffset = 0.524;
         public static final double BackLeftOffset = 0.782;
+        public static final double BackRightOffset = 0.802;
 
         public static final double DriveGearRatio = 5.36;
         public static final double TurnGearRatio = 21.43;

@@ -29,6 +29,6 @@ public class Drive extends Command {
         SmartDashboard.putNumber("Gyro", angleSupplier.get());
         SmartDashboard.putNumber("X Speed", newSpeeds.vxMetersPerSecond);
         SmartDashboard.putNumber("Y Speed", newSpeeds.vyMetersPerSecond);
-        SmartDashboard.putNumber("Angluar Speed", newSpeeds.omegaRadiansPerSecond);
+        SmartDashboard.putNumber("Angular Speed", newSpeeds.omegaRadiansPerSecond);
     }
 }
