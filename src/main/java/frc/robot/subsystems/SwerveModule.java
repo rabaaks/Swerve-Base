@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.AnalogEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DrivetrainConstants;
 
 public class SwerveModule {
@@ -50,9 +51,30 @@ public class SwerveModule {
 
     public void setState(SwerveModuleState state) {
         // Test optimization later
-        SwerveModuleState optimizedState = state; // SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition() % (2.0 * Math.PI)));
+        SmartDashboard.putNumber("Pre angle", state.angle.getDegrees());
+
+        SwerveModuleState optimizedState = SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition()));
+        
+        SmartDashboard.putNumber("Post angle", state.angle.getDegrees());
+
+        double angle = optimizedState.angle.getRadians();
+        double difference = turnEncoder.getPosition() - angle;
+
+        if (difference >= Math.PI) {
+            angle += 2.0 * Math.PI;
+        } else if (difference <= -Math.PI) {
+            angle -= 2.0 * Math.PI;
+        }
+
         drivePID.setReference(optimizedState.speedMetersPerSecond, ControlType.kVelocity);
-        turnPID.setReference(optimizedState.angle.getRadians(), ControlType.kPosition);
+        turnPID.setReference(angle, ControlType.kPosition);
+
+        double currentAngle = turnEncoder.getPosition();
+        if (currentAngle > 2.0 * Math.PI) {
+            turnEncoder.setPosition(currentAngle - 2.0 * Math.PI);
+        } else if (currentAngle < -2.0 * Math.PI) {
+            turnEncoder.setPosition(currentAngle + 2.0 * Math.PI);
+        }
     }
 
     public SwerveModuleState getState() {

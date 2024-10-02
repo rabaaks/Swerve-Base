@@ -7,8 +7,8 @@ public final class Constants {
         public static final int DriverControllerPort = 0;
     }
     public static class DrivetrainConstants {
-        public static final double ForwardSpeed = 1.0;
-        public static final double AngularSpeed = 0.8 * Math.PI;
+        public static final double ForwardSpeed = 0.5;
+        public static final double AngularSpeed = 2.0;
 
         public static final Translation2d FrontLeftLocation = new Translation2d(0.1, 0.1);
         public static final Translation2d FrontRightLocation = new Translation2d(0.1, -0.1);
@@ -36,9 +36,9 @@ public final class Constants {
         public static final double WheelDiameter = 0.1;
 
         public static final double DrivePositionConversionFactor = WheelDiameter * Math.PI / DriveGearRatio;
-        public static final double DriveVelocityConversionFactor = DrivePositionConversionFactor / 60;
+        public static final double DriveVelocityConversionFactor = DrivePositionConversionFactor / 60.0;
 
-        public static final double TurnPositionConversionFactor = 2 * Math.PI / TurnGearRatio;
-        public static final double TurnVelocityConversionFactor = TurnPositionConversionFactor / 60;
+        public static final double TurnPositionConversionFactor = 2.0 * Math.PI / TurnGearRatio;
+        public static final double TurnVelocityConversionFactor = TurnPositionConversionFactor / 60.0;
     }
 }
