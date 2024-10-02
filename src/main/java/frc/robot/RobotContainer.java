@@ -30,7 +30,7 @@ public class RobotContainer {
         drivetrain,
         () -> new ChassisSpeeds(
           -MathUtil.applyDeadband(driverController.getRawAxis(1), 0.1) * DrivetrainConstants.ForwardSpeed,
-          MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1) * DrivetrainConstants.ForwardSpeed,
+          -MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1) * DrivetrainConstants.ForwardSpeed,
           -MathUtil.applyDeadband(driverController.getRawAxis(4), 0.1) * DrivetrainConstants.AngularSpeed
         ),
         () -> Math.toRadians(gyro.getAngle())
