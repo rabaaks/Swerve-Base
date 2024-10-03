@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.util.Map;
+
 import edu.wpi.first.math.geometry.Translation2d;
 
 public final class Constants {
@@ -7,38 +9,52 @@ public final class Constants {
         public static final int DriverControllerPort = 0;
     }
     public static class DrivetrainConstants {
+        public static final double WheelDiameter = 0.1;
+        public static final double Width = 0.2;
+        public static final double Apothem = Width / 2.0; // Don't ask
+
         public static final double ForwardSpeed = 1.0;
         public static final double AngularSpeed = 0.8 * Math.PI;
 
-        public static final Translation2d FrontLeftLocation = new Translation2d(0.1, 0.1);
-        public static final Translation2d FrontRightLocation = new Translation2d(0.1, -0.1);
-        public static final Translation2d BackLeftLocation = new Translation2d(-0.1, 0.1);
-        public static final Translation2d BackRightLocation = new Translation2d(-0.1, -0.1);
+        public static enum Module {
+            FrontLeft,
+            FrontRight,
+            BackLeft,
+            BackRight
+        }
 
-        public static final double DriveP = 0;
-        public static final double DriveI = 0;
-        public static final double DriveD = 0;
-        public static final double DriveFF = 1.0 / ForwardSpeed;
+        public static final Map<Module, Translation2d> Location = Map.of(
+            Module.FrontLeft, new Translation2d(Apothem, Apothem),
+            Module.FrontRight, new Translation2d(Apothem, -Apothem),
+            Module.BackLeft, new Translation2d(-Apothem, Apothem),
+            Module.BackRight, new Translation2d(-Apothem, -Apothem)
+        );
 
-        public static final double TurnP = 0.1;
-        public static final double TurnI = 0;
-        public static final double TurnD = 0;
-        public static final double TurnFF = 0;
+        public static final Map<Module, Double> Offset = Map.of(
+            Module.FrontLeft, 0.283,
+            Module.FrontRight, 0.524,
+            Module.BackLeft, 0.782,
+            Module.BackRight, 0.802
+        );
 
-        public static final double FrontLeftOffset = 0.283;
-        public static final double FrontRightOffset = 0.524;
-        public static final double BackLeftOffset = 0.782;
-        public static final double BackRightOffset = 0.802;
+        public static class Drive {
+            public static final double P = 0.0;
+            public static final double I = 0.0;
+            public static final double D = 0.0;
+            public static final double FF = 1.0 / ForwardSpeed;
+            public static final double GearRatio = 5.36;
+            public static final double PositionConversionFactor = WheelDiameter * Math.PI / GearRatio;
+            public static final double VelocityConversionFactor = PositionConversionFactor / 60;
+        }
 
-        public static final double DriveGearRatio = 5.36;
-        public static final double TurnGearRatio = 21.43;
-        
-        public static final double WheelDiameter = 0.1;
-
-        public static final double DrivePositionConversionFactor = WheelDiameter * Math.PI / DriveGearRatio;
-        public static final double DriveVelocityConversionFactor = DrivePositionConversionFactor / 60;
-
-        public static final double TurnPositionConversionFactor = 2 * Math.PI / TurnGearRatio;
-        public static final double TurnVelocityConversionFactor = TurnPositionConversionFactor / 60;
+        public static class Turn {
+            public static final double P = 0.1;
+            public static final double I = 0.0;
+            public static final double D = 0.0;
+            public static final double FF = 0.0;
+            public static final double GearRatio = 5.36;
+            public static final double PositionConversionFactor = 2 * Math.PI / GearRatio;
+            public static final double VelocityConversionFactor = PositionConversionFactor / 60;
+        }
     }
 }
