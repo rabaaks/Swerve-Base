@@ -42,6 +42,5 @@ public final class Constants {
 
         public static final double TurnPositionConversionFactor = 2.0 * Math.PI / TurnGearRatio;
         public static final double TurnVelocityConversionFactor = TurnPositionConversionFactor / 60.0;
->>>>>>> 0b8827e466a084386f41268c75c241325a0f65cd
     }
 }
