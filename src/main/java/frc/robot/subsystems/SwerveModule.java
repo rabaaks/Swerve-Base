@@ -45,36 +45,20 @@ public class SwerveModule {
         turnEncoder.setVelocityConversionFactor(DrivetrainConstants.TurnVelocityConversionFactor);
 
         absEncoder = new AnalogEncoder(encoderId);
-        // Test abs encoder later
-        // turnEncoder.setPosition((absEncoder.getAbsolutePosition() - offset) * 2.0 * Math.PI);
+        // Test abs encoder late
+        turnEncoder.setPosition((absEncoder.getAbsolutePosition() - offset) * 2.0 * Math.PI - Math.PI);
+
+        turnPID.setPositionPIDWrappingEnabled(true);
+        turnPID.setPositionPIDWrappingMaxInput(Math.PI);
+        turnPID.setPositionPIDWrappingMinInput(-Math.PI);
     }
 
     public void setState(SwerveModuleState state) {
         // Test optimization later
-        SmartDashboard.putNumber("Pre angle", state.angle.getDegrees());
-
         SwerveModuleState optimizedState = SwerveModuleState.optimize(state, Rotation2d.fromRadians(turnEncoder.getPosition()));
-        
-        SmartDashboard.putNumber("Post angle", state.angle.getDegrees());
-
-        double angle = optimizedState.angle.getRadians();
-        double difference = turnEncoder.getPosition() - angle;
-
-        if (difference >= Math.PI) {
-            angle += 2.0 * Math.PI;
-        } else if (difference <= -Math.PI) {
-            angle -= 2.0 * Math.PI;
-        }
 
         drivePID.setReference(optimizedState.speedMetersPerSecond, ControlType.kVelocity);
-        turnPID.setReference(angle, ControlType.kPosition);
-
-        double currentAngle = turnEncoder.getPosition();
-        if (currentAngle > 2.0 * Math.PI) {
-            turnEncoder.setPosition(currentAngle - 2.0 * Math.PI);
-        } else if (currentAngle < -2.0 * Math.PI) {
-            turnEncoder.setPosition(currentAngle + 2.0 * Math.PI);
-        }
+        turnPID.setReference(optimizedState.angle.getRadians(), ControlType.kPosition);
     }
 
     public SwerveModuleState getState() {

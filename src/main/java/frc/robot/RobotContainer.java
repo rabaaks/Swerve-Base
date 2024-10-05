@@ -29,14 +29,14 @@ public class RobotContainer {
       new Drive(
         drivetrain,
         () -> new ChassisSpeeds(
-          -MathUtil.applyDeadband(driverController.getRawAxis(1), 0.1) * DrivetrainConstants.ForwardSpeed,
-          -MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1) * DrivetrainConstants.ForwardSpeed,
-          -MathUtil.applyDeadband(driverController.getRawAxis(4), 0.1) * DrivetrainConstants.AngularSpeed
+          MathUtil.applyDeadband(driverController.getRawAxis(1), 0.1) * DrivetrainConstants.ForwardSpeed,
+          MathUtil.applyDeadband(driverController.getRawAxis(0), 0.1) * DrivetrainConstants.ForwardSpeed,
+          MathUtil.applyDeadband(driverController.getRawAxis(4), 0.1) * DrivetrainConstants.AngularSpeed
         ),
-        () -> Math.toRadians(gyro.getAngle())
+        () -> Math.toRadians(-gyro.getAngle())
       )
     );
-    driverController.button(1).onTrue(new RunCommand(() -> gyro.reset()));
+    driverController.button(1).whileTrue(new RunCommand(() -> gyro.reset()));
   }
 
   public Command getAutonomousCommand() {

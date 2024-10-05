@@ -8,7 +8,7 @@ public final class Constants {
     }
     public static class DrivetrainConstants {
         public static final double ForwardSpeed = 0.5;
-        public static final double AngularSpeed = 2.0;
+        public static final double AngularSpeed = 5.0;
 
         public static final Translation2d FrontLeftLocation = new Translation2d(0.1, 0.1);
         public static final Translation2d FrontRightLocation = new Translation2d(0.1, -0.1);
@@ -26,7 +26,7 @@ public final class Constants {
         public static final double TurnFF = 0;
 
         public static final double FrontLeftOffset = 0.283;
-        public static final double FrontRightOffset = 0.524;
+        public static final double FrontRightOffset = 0.524-0.125;
         public static final double BackLeftOffset = 0.782;
         public static final double BackRightOffset = 0.802;
 
